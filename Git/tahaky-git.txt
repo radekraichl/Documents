@@ -1,0 +1,58 @@
+Obnovení smazaného commitu:
+***************************
+git reflog
+d02b7fe HEAD@{2}: commit: soubor info
+git reset --hard d02b7fe
+
+Sloučení několika commitů:
+**************************
+git rebase HEAD~2
+pick d02b7fe soubor info
+s 1dd7efd uprava souboru info               ;pick přepsat na squash nebo s
+napsat nový commit...
+
+git ls-tree -r master --name-only           ;vypíše všechny soubory v repozitáři
+
+cat <file>									;vypsání obsahu souboru
+ls -1										;výpis adresáře pouze názvy
+ll											;výpis adresáře
+
+git log
+git log --oneline
+git log --oneline --graph
+
+ORIG_HEAD									;ukazatel ne jeden commit před HEAD
+git add .			                        ;přidá do stage všechny soubory v aktuální složce
+
+git checkout -- .							;obnovení smazaných souborů nebo změn ze stage do working directory
+git checkout vetev				            ;přepne na branch 'vetev'
+git checkout~1								;přesunutí o jeden commit zpět
+git checkout master							;přesunutí na vrchol větve master
+
+git branch test 							;vytvoří novou větev test
+git branch -D vetev				            ;smaže natvrdo branch 'vetev'
+
+git commit -m "uprava souboru test.txt"		;commit s komentářem
+git commit -c ORIG_HEAD						;commit s komentářem jinéhé commitu
+git commit -a 								;commit + add
+git commit -a --amend						;úprava existujícího commitu
+git commit -a --amend --no-edit				;úprava existujícího commitu bez editace commitu
+
+git rm --cached <file>						;odebere soubor ze stage
+git rm -f <file>							;odebere soubor ze stage a smaže ho
+
+git restore --staged <file> 				;odebere soubor ze stage
+git restore .								;vrátí změny všech souborů... stage -> working directrory
+git restore <file>                          ;vrátí změny souboru... stage -> working directrory (z posledního commitu)
+	
+git reset --hard HEAD~1						;smaže natvrdo poslední commit
+
+git config --global core.editor "nano"		;nastaví default editor na nano
+git config --list							;config info
+git diff									;rozdíl working directory/index
+git prune									;prořezání větví (remote)
+
+git push -f                                 ;push force
+
+git config --global core.editor "code --wait"   ;nastavení Visual Studio Code jako deafultní editor
+git config --global core.editor "'C:/Program Files (x86)/Notepad++/notepad++.exe' -multiInst -notabbar -nosession -noPlugin"	;nastaveni Notepad++
