@@ -1,3 +1,5 @@
+ORIG_HEAD									;ukazatel ne jeden commit před HEAD
+
 Obnovení smazaného commitu:
 ***************************
 git reflog
@@ -41,9 +43,8 @@ git log
 git log --oneline
 git log --oneline --graph
 
-ORIG_HEAD									;ukazatel ne jeden commit před HEAD
-git add .			                        ;přidá do stage všechny soubory v aktuální složce
-
+Větve
+*****
 git checkout -- .							;obnovení smazaných souborů nebo změn ze stage do working directory
 git checkout vetev				            ;přepne na branch 'vetev'
 git checkout~1								;přesunutí o jeden commit zpět
