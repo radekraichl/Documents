@@ -11,12 +11,32 @@ pick d02b7fe soubor info
 s 1dd7efd uprava souboru info               ;pick přepsat na squash nebo s
 napsat nový commit...
 
+Výpis položek
+*************
 git ls-tree -r master --name-only           ;vypíše všechny soubory v repozitáři
 
 cat <file>									;vypsání obsahu souboru
 ls -1										;výpis adresáře pouze názvy
 ll											;výpis adresáře
 
+Odebrání souborů po úpravě gitignore
+************************************
+git rm -r --cached .
+git add .
+git commit -m "Odebrání nepotřebných souborů"
+
+Připojení k remote
+******************
+git remote add origin https://github.com/radekraichl/Dokumenty.git
+git remote -v                               ;ověření
+...
+git push -u origin master                   ;push
+...
+git config --global push.default            ;nebo nastavit defult
+git push                                    ;pak uz jen push
+
+Logy
+****
 git log
 git log --oneline
 git log --oneline --graph
@@ -47,12 +67,13 @@ git restore <file>                          ;vrátí změny souboru... stage -> 
 	
 git reset --hard HEAD~1						;smaže natvrdo poslední commit
 
-git config --global core.editor "nano"		;nastaví default editor na nano
 git config --list							;config info
 git diff									;rozdíl working directory/index
 git prune									;prořezání větví (remote)
 
 git push -f                                 ;push force
+
+git config --global core.editor "nano"		;nastaví default editor na nano
 
 git config --global core.editor "code --wait"   ;nastavení Visual Studio Code jako deafultní editor
 git config --global core.editor "'C:/Program Files (x86)/Notepad++/notepad++.exe' -multiInst -notabbar -nosession -noPlugin"	;nastaveni Notepad++
