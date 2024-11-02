@@ -1,5 +1,13 @@
 ORIG_HEAD									;ukazatel ne jeden commit před HEAD
 
+Commity
+*******
+git commit -m "uprava souboru test.txt"			;commit s komentářem
+git commit -c ORIG_HEAD					;commit s komentářem jinéhé commitu
+git commit -a 						;commit + add
+git commit -a --amend					;úprava existujícího commitu
+git commit -a --amend --no-edit				;úprava existujícího commitu bez editace commitu
+
 Obnovení smazaného commitu:
 ***************************
 git reflog
@@ -29,21 +37,21 @@ git commit -m "Odebrání nepotřebných souborů"
 
 Připojení k remote
 ******************
+git remote -v                               	;info o nastavení remote
+
+// napoveda z githubu - nefunguje pokud uz je na remote commit
 git remote add origin https://github.com/radekraichl/Dokumenty.git
-git remote -v                               	;ověření
-...
+
+(git branch -M master ;přejmenování aktuální větve na master)
+
+git push -u origin master			;push s nastavení upstreamu
+nebo..
+git push --set-upstream origin master		;push s nastavení upstreamu
+               
+// pokud už je na remote commit
 git fetch					;aktualizace z remote
 git rebase origin/master			;sloučení reamote a local
-gittest>git push --set-upstream origin master	;nastavení upstream
-...
-git push                                    	;pak uz jen push
-...
-
-???
-git push -u origin master                   	;push
-...
-git config --global push.default            	;nebo nastavit defult
-???
+git push -u origin master			;push s nastavení upstreamu
 
 Logy
 ****
@@ -53,36 +61,31 @@ git log --oneline --graph
 
 Větve
 *****
-git checkout -- .							;obnovení smazaných souborů nebo změn ze stage do working directory
-git checkout vetev				            ;přepne na branch 'vetev'
-git checkout~1								;přesunutí o jeden commit zpět
-git checkout master							;přesunutí na vrchol větve master
+git checkout -- .					;obnovení smazaných souborů nebo změn ze stage do working directory
+git checkout vetev				        ;přepne na branch 'vetev'
+git checkout~1						;přesunutí o jeden commit zpět
+git checkout master					;přesunutí na vrchol větve master
 
-git branch test 							;vytvoří novou větev test
-git branch -D vetev				            ;smaže natvrdo branch 'vetev'
+git branch test 					;vytvoří novou větev test
+git branch -D vetev					;smaže natvrdo branch 'vetev'
 
-git commit -m "uprava souboru test.txt"		;commit s komentářem
-git commit -c ORIG_HEAD						;commit s komentářem jinéhé commitu
-git commit -a 								;commit + add
-git commit -a --amend						;úprava existujícího commitu
-git commit -a --amend --no-edit				;úprava existujícího commitu bez editace commitu
-
-git rm --cached <file>						;odebere soubor ze stage
-git rm -f <file>							;odebere soubor ze stage a smaže ho
+git rm --cached <file>					;odebere soubor ze stage
+git rm -f <file>					;odebere soubor ze stage a smaže ho
 
 git restore --staged <file> 				;odebere soubor ze stage
-git restore .								;vrátí změny všech souborů... stage -> working directrory
-git restore <file>                          ;vrátí změny souboru... stage -> working directrory (z posledního commitu)
+git restore .						;vrátí změny všech souborů... stage -> working directrory
+git restore <file>                          		;vrátí změny souboru... stage -> working directrory (z posledního commitu)
 	
-git reset --hard HEAD~1						;smaže natvrdo poslední commit
+git reset --hard HEAD~1					;smaže natvrdo poslední commit
 
-git config --list							;config info
-git diff									;rozdíl working directory/index
-git prune									;prořezání větví (remote)
+git config --list					;config info
+git diff						;rozdíl working directory/index
+git prune						;prořezání větví (remote)
 
-git push -f                                 ;push force
+git push -f                                 		;push force
 
-git config --global core.editor "nano"		;nastaví default editor na nano
-
-git config --global core.editor "code --wait"   ;nastavení Visual Studio Code jako deafultní editor
+Editory
+*******
+git config --global core.editor "nano"			;nastaví default editor na nano
+git config --global core.editor "code --wait"   	;nastavení Visual Studio Code jako deafultní editor
 git config --global core.editor "'C:/Program Files (x86)/Notepad++/notepad++.exe' -multiInst -notabbar -nosession -noPlugin"	;nastaveni Notepad++
