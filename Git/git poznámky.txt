@@ -30,12 +30,20 @@ git commit -m "Odebrání nepotřebných souborů"
 Připojení k remote
 ******************
 git remote add origin https://github.com/radekraichl/Dokumenty.git
-git remote -v                               ;ověření
+git remote -v                               	;ověření
 ...
-git push -u origin master                   ;push
+git fetch					;aktualizace z remote
+git rebase origin/master			;sloučení reamote a local
+gittest>git push --set-upstream origin master	;nastavení upstream
 ...
-git config --global push.default            ;nebo nastavit defult
-git push                                    ;pak uz jen push
+git push                                    	;pak uz jen push
+...
+
+???
+git push -u origin master                   	;push
+...
+git config --global push.default            	;nebo nastavit defult
+???
 
 Logy
 ****
